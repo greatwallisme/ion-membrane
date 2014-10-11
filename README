@@ -1,0 +1,36 @@
+1.HOW TO START ?
+	1) make directory for this project. for example:
+	   $ mkdir ~/geant
+	  
+	2) copy project's files into created directory. for example:
+	   $ cp -r ~/Downloads/track_mem ~/geant/
+	   
+	3) make directory for build files
+	   $ mkdir ~/geant/track_mem_build
+	   
+	4) run cmake (required root, geant4 packages)
+	   $ cd ~/geant/track_mem_build
+	   $ cmake -DCMAKE_BUILD_TYPE=Debug -DGeant4_DIR=path_to_Geant4_installation/lib[64]/Geant4-10.0.1/ ../track_mem
+	   
+	5) make project and launch
+	   $ make
+	   $ ./track_mem trk.mac <element> <atomic number> <atomic mass> <energy per nucleon(in Mev)>
+	   e.g.
+	   $ ./track_mem trk.mac Ni 28 58 6.7
+	   
+	
+	6) to print histo of experiment 
+	   $ root -l 'electron.C(<element>,<radius(in nm)>)'
+	   $ root -l 'electron.C("Ni",46)'
+	   
+	7) enjoy!
+	
+2. SOME PARAMETERS
+	a) in TrackerSD.hh:
+		GLOBAL, apriori = 5000000;
+		lengthThreshold, apriori = 1*nm;
+	b) in PhysicsList.cc
+		cutValue, apriori = 1*nm;
+		energyRange, apriori = (10*eV, 10*GeV);
+	c) in trk.mac:
+		number of events, apriori = 100;
